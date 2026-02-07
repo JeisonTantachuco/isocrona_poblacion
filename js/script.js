@@ -145,6 +145,14 @@ function procesarExito(data) {
 
     // Hacer zoom al polígono nuevo
     map.fitBounds(capaIsocrona.getBounds());
+
+    // 3. Abrir sidebar automáticamente en móviles para mostrar resultados
+    if (window.innerWidth <= 768) {
+        const sidebar = document.getElementById('sidebar');
+        const sidebarToggle = document.getElementById('sidebar-toggle');
+        sidebar.classList.add('active');
+        sidebarToggle.classList.add('active'); // El botón también se mueve
+    }
 }
 
 function procesarError(err) {
@@ -153,3 +161,22 @@ function procesarError(err) {
     document.getElementById('poblacion').innerText = "Error";
     alert("Error: " + (err.message || "Revisa la consola"));
 }
+
+// ==========================================
+// 5. RESPONSIVE - TOGGLE SIDEBAR EN MÓVILES
+// ==========================================
+const sidebarToggle = document.getElementById('sidebar-toggle');
+const sidebar = document.getElementById('sidebar');
+
+sidebarToggle.addEventListener('click', function() {
+    sidebar.classList.toggle('active');
+    sidebarToggle.classList.toggle('active'); // El botón también se mueve
+});
+
+// Cerrar sidebar cuando se hace clic en el mapa (solo en móviles)
+map.on('click', function() {
+    if (window.innerWidth <= 768) {
+        sidebar.classList.remove('active');
+        sidebarToggle.classList.remove('active'); // El botón vuelve a su posición
+    }
+});
