@@ -36,7 +36,7 @@ const capaGoogle = L.tileLayer('http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z=
 // --- Crear el Mapa ---
 // Iniciamos centrado y con la capa 'capaCarto' por defecto
 const map = L.map('map', {
-    center: [-33.45, -70.66], // Coordenadas iniciales
+    center: [-12.046674378764054, -77.04233704332704], // Coordenadas iniciales  
     zoom: 12,
     layers: [capaCarto] // Aquí decidimos cuál se ve primero
 });
