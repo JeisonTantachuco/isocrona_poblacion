@@ -1,0 +1,71 @@
+/* CAMBIO IMPORTANTE AQUÍ */
+html, body { 
+    height: 100%; 
+    width: 100%;
+    margin: 0; 
+    padding: 0; 
+    overflow: hidden; /* Evita barras de desplazamiento dobles */
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+    display: flex; 
+    /* El height: 100vh ya no es necesario si html tiene 100%, pero dejémoslo por seguridad */
+    height: 100vh; 
+}
+/* Barra lateral */
+#sidebar { 
+    width: 300px; 
+    padding: 20px; 
+    background: #f8f9fa; 
+    border-right: 1px solid #ddd; 
+    display: flex; 
+    flex-direction: column; 
+    gap: 20px;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.05);
+    z-index: 1000; /* Para que quede sobre el mapa si se solapan */
+}
+
+/* El mapa ocupa todo el espacio restante */
+#map { 
+    flex-grow: 1; 
+    height: 100%;
+}
+
+h1 { 
+    font-size: 1.4rem; 
+    margin: 0; 
+    color: #333;
+}
+
+.control-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+input[type="number"] {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+.result-box { 
+    background: white; 
+    padding: 20px; 
+    border-radius: 8px; 
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08); 
+    text-align: center;
+}
+
+#poblacion {
+    color: #24b47e; /* Verde Supabase */
+    font-size: 2.5rem;
+    margin: 10px 0;
+}
+
+.loading { 
+    color: #666; 
+    font-style: italic; 
+}
