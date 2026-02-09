@@ -1,21 +1,34 @@
-/* CAMBIO IMPORTANTE AQUÍ */
+/* ==========================
+   RESET + BASE
+   ========================== */
+
+* {
+    box-sizing: border-box;
+}
+
 html, body {
     height: 100%;
     width: 100%;
     margin: 0;
     padding: 0;
-    overflow: hidden; /* Evita barras de desplazamiento dobles */
 }
 
+/* Layout principal */
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     display: flex;
+
+    /* Viewport correcto (Safari iOS safe) */
     height: 100vh;
+    height: 100dvh;
 }
 
-/* Botón toggle para móviles */
+/* ==========================
+   BOTÓN TOGGLE (MÓVIL)
+   ========================== */
+
 #sidebar-toggle {
-    display: none; /* Oculto en desktop */
+    display: none;
     position: fixed;
     top: 10px;
     left: 10px;
@@ -36,10 +49,13 @@ body {
 }
 
 #sidebar-toggle.active {
-    left: 130px; /* Se mueve junto con el sidebar (120px + 10px margen) */
+    left: 180px;
 }
 
-/* Barra lateral */
+/* ==========================
+   SIDEBAR (DESKTOP)
+   ========================== */
+
 #sidebar {
     width: 300px;
     padding: 20px;
@@ -50,15 +66,29 @@ body {
     gap: 20px;
     box-shadow: 2px 0 5px rgba(0,0,0,0.05);
     z-index: 1000;
-    overflow-y: auto; 
+
+    /* Scroll interno controlado */
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    /* Texto siempre legible */
+    word-break: normal;
+    overflow-wrap: break-word;
 }
 
-/* Contenedor del mapa */
+/* ==========================
+   MAPA
+   ========================== */
+
 #map {
     flex-grow: 1;
-    height: 100%;
     width: 100%;
+    height: 100%;
 }
+
+/* ==========================
+   COMPONENTES
+   ========================== */
 
 h1 { 
     font-size: 1.4rem; 
@@ -88,7 +118,7 @@ input[type="number"] {
 }
 
 #poblacion {
-    color: #24b47e; /* Verde Supabase */
+    color: #24b47e;
     font-size: 2.5rem;
     margin: 10px 0;
 }
@@ -98,38 +128,39 @@ input[type="number"] {
     font-style: italic;
 }
 
-/* ==========================================
-   RESPONSIVE DESIGN - MÓVILES Y TABLETS
-   ========================================== */
+/* ==========================
+   RESPONSIVE – MÓVILES
+   ========================== */
 
-/* Tablets medianas y móviles grandes (hasta 768px) */
 @media (max-width: 768px) {
-    body {
-        flex-direction: row;
-    }
 
     #sidebar-toggle {
-        display: block; /* Mostrar botón en móviles */
+        display: block;
     }
 
     #sidebar {
         position: fixed;
-        top: 0;
-        left: -320px; /* Oculto fuera de la pantalla */
-        height: 100%;
-        width: 120px;
-        transition: left 0.3s ease;
-        overflow-y: auto;
+
+        /* Safari iOS + notch safe */
+        top: env(safe-area-inset-top);
+        bottom: env(safe-area-inset-bottom);
+
+        left: -240px;
+        width: 180px;
+        max-width: 80vw;
+
+        padding: 15px;
+        background: #f8f9fa;
         box-shadow: 4px 0 12px rgba(0,0,0,0.15);
+
+        overflow-y: auto;
+        overflow-x: hidden;
+
+        transition: left 0.3s ease;
     }
 
     #sidebar.active {
-        left: 0; /* Se desliza hacia la vista */
-    }
-
-    #map {
-        width: 100%;
-        height: 100%;
+        left: 0;
     }
 
     h1 {
@@ -145,14 +176,16 @@ input[type="number"] {
     }
 }
 
+/* ==========================
+   LEAFLET – ZOOM EN MÓVIL
+   ========================== */
 
-/* Mover controles de zoom de Leaflet en móviles para evitar superposición */
 @media (max-width: 768px) {
     .leaflet-top.leaflet-left {
         left: auto;
         right: 10px;
-        top: auto; 
-        bottom: 20px;  
+        top: auto;
+        bottom: 20px;
     }
 
     .leaflet-control-zoom {
