@@ -1,0 +1,55 @@
+/* css/i18n.css */
+
+/* Contenedor de los botones */
+.lang-buttons {
+    margin-bottom: 20px;
+    display: flex;
+    gap: 10px; /* Espacio entre botones */
+    flex-wrap: wrap; /* Permite que se acomoden si falta espacio */
+}
+
+/* Estilo del botón */
+.lang-btn {
+    background: #f0f0f0;
+    border: 1px solid #ccc;
+    padding: 8px 12px; /* Un poco más de espacio interno */
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 14px;
+    font-family: inherit; 
+    transition: all 0.2s ease;
+    
+    /* CLAVE: Esto hace que ambos botones intenten ocupar el mismo ancho */
+    flex: 1; 
+    text-align: center; /* Asegura que el texto "Español/English" esté centrado */
+    min-width: 80px; /* Evita que se hagan demasiado pequeños */
+}
+
+/* Efecto al pasar el mouse */
+.lang-btn:hover { 
+    background: #e0e0e0; 
+}
+
+/* Estilo cuando el botón está activo/seleccionado */
+.lang-btn.active { 
+    background: #333; 
+    color: #fff; 
+    border-color: #333; 
+}
+
+/* =========================================
+   RESPONSIVE: Ajustes para Móviles
+   ========================================= */
+@media (max-width: 768px) {
+    .lang-buttons {
+        /* En móvil, los ponemos en columna (uno encima de otro) */
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .lang-btn {
+        width: 100%; /* Que ocupen todo el ancho disponible */
+        padding: 12px; /* Botones más grandes para dedos táctiles */
+        font-size: 16px; /* Texto un poco más grande para leer mejor */
+    }
+}

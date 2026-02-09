@@ -3,13 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mapa de Isocronas y Población</title>
+    <title id="page-title" data-i18n="page_title">Mapa de Isocronas y Población</title>
     
     <!-- Hoja de Estilos de Leaflet (Librería externa) -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     
-    <!-- TU HOJA DE ESTILOS (Ahora en la carpeta css/) -->
+    <!-- ESTILOS (carpeta css/) -->
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/i18n.css">
 </head>
 <body>
 
@@ -18,18 +19,24 @@
 
     <!-- Barra lateral -->
     <div id="sidebar">
-        <h1>Análisis de Población</h1>
+        <!-- BOTONES DE IDIOMA -->
+        <div class="lang-buttons">
+            <button class="lang-btn active" onclick="setLanguage('es')">Español</button>
+            <button class="lang-btn" onclick="setLanguage('en')">English</button>
+        </div>
+
+        <h1 data-i18n="main_title">Análisis de Población</h1>
         
         <div class="control-group">
-            <label for="minutos">Tiempo de viaje (minutos):</label>
+            <label for="minutos" data-i18n="label_time">Tiempo de viaje (minutos):</label>
             <input type="number" id="minutos" value="10" min="1" max="60">
         </div>
 
         <div class="result-box">
-            <h3>Resultados</h3>
-            <p id="estado">Haz clic en el mapa para calcular.</p>
+            <h3 data-i18n="results_title">Resultados</h3>
+            <p id="estado" data-i18n="status_initial">Haz clic en el mapa para calcular.</p>
             <h1 id="poblacion">-</h1>
-            <small>Habitantes estimados</small>
+            <p data-i18n="est_population">Habitantes estimados</p>
         </div>
     </div>
 
@@ -42,7 +49,8 @@
     <!-- 2. Cargar Cliente Supabase -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     
-    <!-- 3. TU LÓGICA (Ahora en la carpeta js/) -->
+    <!-- 3. Js (Ahora en la carpeta js/) -->
+    <script src="js/i18n.js"></script>
     <script src="js/script.js"></script>
 
 </body>
