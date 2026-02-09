@@ -21,7 +21,7 @@ const capaSatelite = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/se
     maxZoom: 19
 });
 
-const capaGoogle = L.tileLayer('http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}', {
+const capaGoogle = L.tileLayer('https://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}', {
     maxZoom: 20,
     subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
 });
