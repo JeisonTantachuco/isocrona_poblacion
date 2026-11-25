@@ -99,6 +99,12 @@ map.on('click', async function(e) {
 
     } catch (err) {
         isCalculating = false;
+        // Mostrar en consola el mensaje real que devuelve la Edge Function
+        if (err.context) {
+            try {
+                console.log(await err.context.json());
+            } catch (_) { /* la respuesta no era JSON */ }
+        }
         procesarError(err);
     }
     

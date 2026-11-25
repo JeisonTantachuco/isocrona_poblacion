@@ -24,7 +24,7 @@ serve(async (req) => {
     if (!ORS_API_KEY) throw new Error('Falta la API Key de ORS en los secretos')
 
     // 4. Llamar a OpenRouteService
-    const orsResponse = await fetch('https://api.openrouteservice.org/v2/isochrones/driving-car', {
+    const orsResponse = await fetch('https://api.heigit.org/openrouteservice/v2/isochrones/driving-car', {
       method: 'POST',
       headers: {
         'Authorization': ORS_API_KEY,
@@ -37,6 +37,10 @@ serve(async (req) => {
       })
     })
 
+    if (!orsResponse.ok) {
+      const text = await orsResponse.text()
+      throw new Error(`ORS respondió ${orsResponse.status}: ${text.slice(0, 200)}`)
+    }
     const orsData = await orsResponse.json()
 
     if (!orsData.features || orsData.features.length === 0) {
